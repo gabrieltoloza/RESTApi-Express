@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module">
+        fetch('http://localhost:3000/products')
+            .then(res => res.json())
+                .then(productos => {
+                    console.log(productos);
+                    const html = productos.map(product =>{
+                        return `
+                                <article data-id="${product.id}">
+                                    <h2>${product.marca}</h2>
+                                    <p>${product.descripcion}</p>
+                                    <p>$${product.precioOriginal}</p>
+
+                                    <button>Eliminar</button>
+                                </articule>
+                        `
+                    }).join('')
+
+                    document.querySelector('main').innerHTML = html
+
+                    document.addEventListener("click", (e) => {
+                        if (e.target.matches('button')) {
+                            const articulo = e.target.closest('article')
+                            const id = articulo.dataset.id
+
+                            fetch(`http://localhost:3000/products/${id}`, {
+                                method: 'DELETE'
+                            })
+                            .then(response => {
+                                if (response.ok) {
+                                    articulo.remove()
+                                }
+                            })
+                        }
+                    })
+                })
+    </script>
+</head>
+<body>
+        <main></main>
+</body>
+</html>
