@@ -1,4 +1,4 @@
-const z = require('zod')
+import z from 'zod'
 
 
 
@@ -32,17 +32,13 @@ const productSchema = z.object({
 })
 
 // funcion para validar la creacion de un producto POST 
-function validateProduct (object) {
+export function validateProduct (object) {
     return productSchema.safeParse(object)
 }
 
 
-function validatePartial (object) {
+ export function validatePartialProduct (object) {
     return productSchema.partial().safeParse(object)
 }
 
 
-module.exports = {
-    validateProduct,
-    validatePartial
-}
