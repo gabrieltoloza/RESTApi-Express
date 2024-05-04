@@ -6,14 +6,15 @@ export const productsRouter = Router()
 
 
 
+productsRouter.get('/', ProductsController.getAll)           // <-- GET
 
-productsRouter.get('/', ProductsController.getAll)
-productsRouter.post('/',  ProductsController.createProduct)
+productsRouter.post('/',  ProductsController.createProduct)      // <-- POST
 
+productsRouter.get('/:id', ProductsController.getByID)          // <-- GET by ID
 
-productsRouter.get('/:id', ProductsController.getByID)
-productsRouter.patch('/:id', ProductsController.updateProduct)
-productsRouter.delete('/:id', ProductsController.deleteProduct)
+productsRouter.patch('/:id', ProductsController.updateProduct)      // <-- PATCH
+
+productsRouter.delete('/:id', ProductsController.deleteProduct)     // <-- DELETE
 
 
 
