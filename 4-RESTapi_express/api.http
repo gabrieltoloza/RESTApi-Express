@@ -7,7 +7,7 @@ GET http://localhost:3000/products
 
 
 ### Recuperar producto por id
-GET http://localhost:3000/products/15
+GET http://localhost:3000/products/14
 
 
 ### Recuperar todas los productos por categoria (query params)
@@ -43,4 +43,4 @@ Content-Type: application/json
 
 
 ### Borrar un producto 
-DELETE http://localhost:3000/products/15
+DELETE http://localhost:3000/products/14
