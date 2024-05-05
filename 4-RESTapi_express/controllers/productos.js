@@ -1,13 +1,12 @@
-import { ProductsModels } from '../models/local-file-system/product.js'
 import { validateProduct, validatePartialProduct } from '../schema_validation.js'
-import { ProductsModelsMongo } from '../models/mongo_db/product.js'
-import { json } from 'express'
+import { ProductsModels } from '../models/local-file-system/product.js'
+// import { ProductsModels } from '../models/mysql/product.js'
 
 export class ProductsController {
 
     static async getAll (req, res) {
-        const { categoria } = req.query
-        const products = await ProductsModels.getAll({categoria})
+        const { category } = req.query
+        const products = await ProductsModels.getAll({category})
         res.json(products)
     }
 

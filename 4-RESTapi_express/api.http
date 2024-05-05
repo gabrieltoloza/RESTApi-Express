@@ -2,7 +2,7 @@
 
 
 
-### Recuperar todas las peliculas
+### Recuperar todas los productos
 GET http://localhost:3000/products
 
 
@@ -11,7 +11,7 @@ GET http://localhost:3000/products/14
 
 
 ### Recuperar todas los productos por categoria (query params)
-GET http://localhost:3000/products?categoria=cremas
+GET http://localhost:3000/products?category=aceites
 
 ### Crear producto con POST
 POST http://localhost:3000/products

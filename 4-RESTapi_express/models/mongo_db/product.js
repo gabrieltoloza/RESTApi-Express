@@ -38,9 +38,9 @@ run().catch(console.dir);
 
 
 
-export class ProductsModelsMongo {
+export class ProductsModels {
 
-    static async getAllforMongo ({categoria}) {
+    static async getAll ({categoria}) {
 
         try {
             await client.connect()
@@ -64,7 +64,7 @@ export class ProductsModelsMongo {
     }
 
 
-    static async getByIdforMongo ({ id }) {
+    static async getById ({ id }) {
         
         try {
 
@@ -83,7 +83,7 @@ export class ProductsModelsMongo {
     }
 
 
-    static async createProductforMongo ({ input }) {
+    static async createProduct ({ input }) {
 
         try {
 
@@ -107,10 +107,9 @@ export class ProductsModelsMongo {
     }
     
 
-    static async updateProductforMongo ({ id, input }) {
-      
+    static async updateProduct ({ id, input }) {
+        
         try {
-
             await client.connect()
             const collection = client.db('mongo_db').collection('products')
             
@@ -132,7 +131,7 @@ export class ProductsModelsMongo {
   
 
 
-    static async deleteProductforMongo ({id}) {
+    static async deleteProduct ({id}) {
 
         try {
 

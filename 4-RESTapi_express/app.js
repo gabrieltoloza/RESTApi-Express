@@ -16,7 +16,9 @@ app.use('/products', productsRouter)
 
 // Gestion de error 404 para la app general
 app.use((req, res) => {
-    res.status(404).send('<h1>Error 404 jaja</h1>')
+    res.status(404).json(
+        {Hi: "How are you? To list all products( http://localhost:3000/products ). To list by id ( http://localhost:3000/products/1) - [from 1 to 15]. By categoria: (http://localhost:3000/products?category=aceites ). Create, update and delete are disabled so as not to use database. Ask for authorization!"}
+    )
 })
 
 
