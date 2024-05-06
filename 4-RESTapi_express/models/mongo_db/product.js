@@ -1,10 +1,8 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
+import { randomUUID } from 'node:crypto'
+
 const uri = "mongodb+srv://Vtoxic30:germancitoquerido@toxicblood.rsyvfsi.mongodb.net/?retryWrites=true&w=majority&appName=ToxicBlood";
 
-import { readJson } from '../../utils.js'
-import { randomUUID, randomBytes } from 'node:crypto'
-
-const products = readJson('./productos.json')
 
 
 
@@ -38,7 +36,7 @@ run().catch(console.dir);
 
 
 
-export class ProductsModels {
+export class ProductModel {
 
     static async getAll ({categoria}) {
 

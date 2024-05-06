@@ -6,7 +6,7 @@ const products = readJson('./productos.json')
 
 
 
-export class ProductsModels {
+export class ProductModel {
 
     static async getAll ({ categoria }) {
         if(categoria) {
@@ -21,6 +21,7 @@ export class ProductsModels {
         return product
     }
 
+    
     static async createProduct ({ input }) {
 
         const newProduct = {

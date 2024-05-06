@@ -1,20 +1,20 @@
 import { Router } from "express";
-import { ProductsController } from "../controllers/productos.js";
-
-export const productsRouter = Router()
+import { ProductController } from "../controllers/productos.js";
 
 
+export const createProductRouter = ({ productModel }) => {
+    const productsRouter = Router()
+    
+    const productController = new ProductController ({ productModel })
+    productsRouter.get('/', productController.getAll)           // <-- GET
+    productsRouter.post('/',  productController.createProduct)      // <-- POST
+    
+    productsRouter.get('/:id', productController.getByID)          // <-- GET by ID
+    productsRouter.patch('/:id', productController.updateProduct)      // <-- PATCH
+    productsRouter.delete('/:id', productController.deleteProduct)     // <-- DELETE
 
-
-productsRouter.get('/', ProductsController.getAll)           // <-- GET
-
-productsRouter.post('/',  ProductsController.createProduct)      // <-- POST
-
-productsRouter.get('/:id', ProductsController.getByID)          // <-- GET by ID
-
-productsRouter.patch('/:id', ProductsController.updateProduct)      // <-- PATCH
-
-productsRouter.delete('/:id', ProductsController.deleteProduct)     // <-- DELETE
+    return productsRouter
+}
 
 
 

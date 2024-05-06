@@ -5,8 +5,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "node --watch app.js"
+    "start:mysql": "node --watch servidor-mysql.js",
+    "start:mongodb": "node --watch servidor-mongodb.js",
+    "start:localSystem": "node --watch servidor-localSystem.js"
   },
   "keywords": [],
   "author": "",
