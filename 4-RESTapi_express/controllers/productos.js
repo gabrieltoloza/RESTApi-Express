@@ -1,6 +1,9 @@
 import { validateProduct, validatePartialProduct } from '../schema_validation.js'
-import { ProductsModels } from '../models/local-file-system/product.js'
-// import { ProductsModels } from '../models/mysql/product.js'
+// import { ProductsModels } from '../models/local-file-system/product.js'
+// import { ProductsModels } from '../models/mongo_db/product.js'
+import { ProductsModels } from '../models/mysql/product.js'
+
+
 
 export class ProductsController {
 

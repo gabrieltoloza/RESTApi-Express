@@ -7,11 +7,11 @@ GET http://localhost:3000/products
 
 
 ### Recuperar producto por id
-GET http://localhost:3000/products/14
+GET http://localhost:3000/products/2bb4be38-0ae9-11ef-9016-52660c090b1a
 
 
 ### Recuperar todas los productos por categoria (query params)
-GET http://localhost:3000/products?category=aceites
+GET http://localhost:3000/products?category=cremas
 
 ### Crear producto con POST
 POST http://localhost:3000/products
