@@ -11,11 +11,12 @@ export const createApp = ({ productModel }) => {
     const app = express()
 
     app.use(json()) // <-- Middleware de Express, multiples funciones. LEER MAS
+
     app.use(corsMiddleware())  // <---- Middleware hecho con cors para validar el protocolo CORS
+
     app.disable('x-powered-by') // deshabilitar el header X-Powered-By : Express (buena practica de seguridad)
 
-    // router
-    app.use('/products', createProductRouter({ productModel}))
+    app.use('/products', createProductRouter({ productModel})) // <--  router
     
     // Gestion de error 404 para la app general
     app.use((req, res) => {
@@ -24,7 +25,7 @@ export const createApp = ({ productModel }) => {
         )
     })
     
-    const PORT = process.env.PORT ?? 3000
+    const PORT = process.env.PORT ?? 3000   // <--  puerto
     
     app.listen(PORT, () => {
         console.log(`Server listening on port http://localhost:${PORT}`)
