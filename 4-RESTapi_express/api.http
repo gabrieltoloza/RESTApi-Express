@@ -19,14 +19,14 @@ Content-Type: application/json
 
 {
   
-    "marca": "Crema generica",
-    "detalles": "100% Vegana",
-    "precio": 18,
-    "precioOriginal": 18,
-    "categoria": "cremas",
+    "marca": "maria marta ",
+    "detalles": "raza alienigena",
+    "precio": 19,
+    "precioOriginal": 19,
+    "categoria": "semillas",
     "imagenUrl": "./Productos/cremacannabis3.webp",
-    "descripcion": "Crema 100% vegana, extraidas de cultivos argentinos de cañamo de la zona pampeana, chequear el prospecto para sus casos de uso.",
-    "stock": 10
+    "descripcion": "Semillas 100% ak-47. Exterior en invernadero explota",
+    "stock": 32
     
 }
 
@@ -43,4 +43,4 @@ Content-Type: application/json
 
 
 ### Borrar un producto 
-DELETE http://localhost:3000/products/90bd7e1c-0bd3-11ef-9016-52660c090b1a
+DELETE http://localhost:3000/products/972b2303-0cb1-11ef-9016-52660c090b1a

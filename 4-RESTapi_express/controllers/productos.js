@@ -20,8 +20,8 @@ export class ProductController {
     getByID = async (req, res) => {
         const { id } = req.params 
         const product = await this.productModel.getById({ id })
-        if (product) return res.json(product)
-        res.status(404).send('<h1>Product not found</h1>')
+        if (product === null) return res.status(404).json({ message : "Producto no encontrado "})
+        return res.json(product)
     }
 
     createProduct = async (req, res) => {

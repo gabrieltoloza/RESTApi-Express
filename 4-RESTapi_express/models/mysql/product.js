@@ -16,11 +16,8 @@ export class ProductModel {
 
     static async getAll ({category}) {
         // la consulta devuelve una tupla con dos indices, resultado e informacion.
-
         try {
-
             if (category) {
-
                 const lowerCaseCategoria = category.toLowerCase()
                 const [categoria] = await connection.query(
                     'SELECT id, nombre FROM categoria WHERE LOWER(nombre) = ?',
@@ -43,7 +40,6 @@ export class ProductModel {
                 return productsFiltered
     
             }
-    
             const [result] = await connection.query(
                 `SELECT marca, detalles, precio, precioOriginal, imagenUrl, descripcion, stock, BIN_TO_UUID(id) 
                  FROM producto;`
@@ -58,9 +54,10 @@ export class ProductModel {
 
 
     static async getById ({ id }) {
-        
         try {
-
+            const [result] = (await connection.query('SELECT UUID() uuid'))[0]
+            const uuid = result.uuid
+            console.log(uuid)
             const [producto] = await connection.query(
                 `SELECT marca, detalles, precio, precioOriginal, imagenUrl, descripcion, stock, BIN_TO_UUID(id) 
                  FROM producto
@@ -78,11 +75,9 @@ export class ProductModel {
 
 
     static async createProduct ({ input }) {
-
-        const [uuid] = await connection.query('SELECT UUID() uuid')
-        
+        const [result] = (await connection.query('SELECT UUID() uuid'))[0]
+        const uuid = result.uuid
         try {
-
             const {
                 marca,
                 detalles,
@@ -92,13 +87,12 @@ export class ProductModel {
                 imagenUrl,
                 descripcion,
                 stock
-                
             } = input
     
             await connection.query(
                 `INSERT INTO producto (id, marca, detalles, precio, precioOriginal, imagenUrl, descripcion, stock)
                 VALUES
-                    (?, ?, ? ,?, ? ,? ,? ,?)`,
+                    (UUID_TO_BIN(?), ?, ? ,?, ? ,? ,? ,?)`,
                 [uuid, marca, detalles, precio, precioOriginal, imagenUrl, descripcion, stock]
             )   
             
@@ -110,7 +104,7 @@ export class ProductModel {
             )
             
             const queryNewProduct = await connection.query(
-                `SELECT *
+                `SELECT *, BIN_TO_UUID(producto_id)
                 FROM producto
                 JOIN producto_categoria ON producto.id = producto_categoria.producto_id
                 JOIN categoria ON producto_categoria.categoria_id = categoria.id
@@ -130,9 +124,7 @@ export class ProductModel {
     // podemos usar join para juntar los nombres de los campos del input
     // tambien podemos guardar en un array los valores del input
     static async updateProduct ({ id, input }) {
-        
         try {
-
             let updateValues = []
             let queryParts = [] 
 
@@ -176,10 +168,7 @@ export class ProductModel {
 
 
     static async deleteProduct ({id}) {
-
         try {
-            console.log(id)
-            console.log([id])
             const [deleteProduct] = await connection.query(
                 `DELETE FROM producto 
                 WHERE id = UUID_TO_BIN(?)`,
@@ -189,7 +178,6 @@ export class ProductModel {
 
             if (deleteProduct.affectedRows === 1) return true
            
-
         } catch (err) {
             console.error("Ocurrio un error al intentar borrar el producto. Detalles:  ", err.message)
             return false
