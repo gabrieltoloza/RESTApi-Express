@@ -16,7 +16,7 @@ app.use('/products', productsRouter)
 
 // Gestion de error 404 para la app general
 app.use((req, res) => {
-    res.status(404).json({Welcome: "Get all products: https://restapi-express.onrender.com/productos  ===  Get by Id: https://restapi-express.onrender.com/1 ===(1-15)===  Get By Category:  http://localhost:3000/products?categoria=CREMAS === (aceites, semillas, cremas)"})
+    res.status(404).json({Welcome: "How are you? To list all products( http://localhost:3000/products ). To list by id ( http://localhost:3000/products/1) - [from 1 to 15]. By categoria: (http://localhost:3000/products?category=aceites ). Create, update and delete are disabled so as not to use database. Ask for authorization!"})
 })
 
 
