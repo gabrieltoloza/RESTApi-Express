@@ -16,7 +16,7 @@ app.use('/products', productsRouter)
 
 // Gestion de error 404 para la app general
 app.use((req, res) => {
-    res.status(404).send('<h1>Error 404 jaja</h1>')
+    res.status(404).json({Welcome: "Get all products: https://restapi-express.onrender.com/productos  ===  Get by Id: https://restapi-express.onrender.com/1 ===(1-15)===  Get By Category:  http://localhost:3000/products?categoria=CREMAS === (aceites, semillas, cremas)"})
 })
 
 
