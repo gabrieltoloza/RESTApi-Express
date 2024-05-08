@@ -132,9 +132,7 @@ export class ProductsModels {
 
 
     static async deleteProduct ({id}) {
-
         try {
-
             await client.connect()
             const collection = client.db('atlas_db').collection('products')
     
