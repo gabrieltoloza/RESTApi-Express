@@ -1,16 +1,23 @@
 import express, { json } from 'express'
 import { productsRouter } from './routes/products.js'
+import { orderRouter } from './routes/orders.js'
 import {corsMiddleware} from './middleware/cors.js'
 
 const app = express()
+
+
 
 
 app.use(json()) // <-- Middleware de Express, multiples funciones. LEER MAS
 app.use(corsMiddleware())  // <---- Middleware hecho con cors para validar el protocolo CORS
 app.disable('x-powered-by') // deshabilitar el header X-Powered-By : Express (buena practica de seguridad)
 
+
+
+
 // router
 app.use('/products', productsRouter)
+app.use('/orders', orderRouter)
 
 
 

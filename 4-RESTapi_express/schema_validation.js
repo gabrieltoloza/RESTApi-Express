@@ -42,3 +42,26 @@ export function validateProduct (object) {
 }
 
 
+
+// validacion para el createOrder
+const schemaByIf = z.object({
+
+    userId: z.string().uuid(),
+    productos: z.array(z.string()).nonempty().min(1)
+})
+
+export function validateId (object) {
+    return schemaByIf.safeParse(object)
+}
+
+
+
+const schemaUpdate = z.object({
+    nombre: z.string().min(5).max(15),
+    apellido: z.string().min(5).max(20),
+    dni: z.number().int().positive().min(6).max(11)
+})
+
+export function validateUpdateOrder (object){
+    return schemaUpdate.safeParse(object)
+}

@@ -1,5 +1,4 @@
 import { validateProduct, validatePartialProduct } from '../schema_validation.js'
-// import { ProductsModels } from '../models/local-file-system/product.js'
 // import { ProductsModels } from '../models/mongo_db/product.js'
 import { ProductsModels } from '../models/mysql/product.js'
 
@@ -17,7 +16,7 @@ export class ProductsController {
         const { id } = req.params 
         const product = await ProductsModels.getById({ id })
         if (product) return res.json(product)
-        res.status(404).send('<h1>Product not found</h1>')
+        res.status(404).json({ message: "Producto no encontrado "})
     }
 
     static async createProduct (req, res) {
