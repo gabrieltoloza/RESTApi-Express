@@ -45,9 +45,24 @@ export class ProductsModels{
             }
     
             const [result] = await connection.query(
-                `SELECT marca, detalles, precio, precioOriginal, imagenUrl, descripcion, stock, BIN_TO_UUID(id) 
-                 FROM producto;`
+                `
+                SELECT 
+                    bin_to_uuid(producto.id) AS id, 
+                    marca, 
+                    detalles, 
+                    precio, 
+                    precioOriginal, 
+                    imagenUrl, 
+                    descripcion, 
+                    stock, 
+                    categoria.nombre AS categoria
+
+                FROM producto
+                JOIN producto_categoria ON producto_id = producto.id
+                JOIN categoria ON producto_categoria.categoria_id = categoria.id
+                `
             )
+            console.log("Consumo de funcion ")
             return result
             
         } catch (err) {
@@ -130,7 +145,7 @@ export class ProductsModels{
         try {
             let updateValues = []
             let queryParts = [] 
-
+            
             for (let field in input) {
                 updateValues.push(input[field])
                 queryParts.push(`${field} = ?`)
@@ -140,7 +155,7 @@ export class ProductsModels{
             const [result] = await connection.query(
                 `UPDATE producto SET ${queryParts.join(', ')}
                 WHERE id = UUID_TO_BIN(?);`,
-                updateValues
+                [updateValues]
             )
 
             if (result.affectedRows > 0) {

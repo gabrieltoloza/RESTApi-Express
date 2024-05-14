@@ -1,0 +1,48 @@
+
+
+
+
+### Obtener todas las facturas
+GET http://localhost:3000/orders/
+
+
+
+### Obtener factura por id de usuario
+GET http://localhost:3000/orders/b6ae2136-0fa7-11ef-9016-52660c090b1a
+
+
+### Crear un nuevo pedido
+POST http://localhost:3000/orders
+Content-Type: application/json
+
+
+{
+
+    "usuario": ["Gabriel", "Toloza"],
+    "tarjeta_numero": 51523256,
+    "tarjeta_cod": 15485,
+    "email": "estratogerman@gmail.com",
+    "direccion": "caaguazu 625",
+    "productos": [
+        "aceite de cañamo",
+        "cannabis flex"
+    ],
+}
+
+
+
+
+### Actualizar factura ( SOLO MANAGEMENT EN UNA SITUACION "ESPECIAL " )
+
+PATCH http://localhost:3000/orders/2/users/d80641de-109e-11ef-9016-52660c090b1a
+Content-Type: application/json
+
+{
+
+    "nombre": "abigail",
+    "apellido": "roldansita",
+    "dni": 38526598
+
+}
+
+

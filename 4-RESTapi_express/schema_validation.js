@@ -46,22 +46,36 @@ export function validateProduct (object) {
 // validacion para el createOrder
 const schemaByIf = z.object({
 
-    userId: z.string().uuid(),
+    usuario: z.array(z.string()).nonempty().min(1),
+    tarjeta_numero: z.number().int().positive(),
+    tarjeta_cod: z.number().int().positive(),
+    email: z.string().email(),
+    direccion: z.string(),
     productos: z.array(z.string()).nonempty().min(1)
 })
 
-export function validateId (object) {
+
+export function validateOder (object) {
     return schemaByIf.safeParse(object)
 }
 
 
-
+// Updaye Schema
 const schemaUpdate = z.object({
+
     nombre: z.string().min(5).max(15),
     apellido: z.string().min(5).max(20),
-    dni: z.number().int().positive().min(6).max(11)
+    dni: z.number().int().positive().min(100000).max(99999999999),
+    productos: z.array(z.string()).nonempty().min(1),
+    total: z.number().int().positive().min(1)
+    
 })
 
-export function validateUpdateOrder (object){
-    return schemaUpdate.safeParse(object)
+ // Partial validate Update
+export function partialValidateUpdateOrder (object){
+    return schemaUpdate.partial().safeParse(object)
+}
+
+export const firstCharLower = (str) => {
+    return str[0].toLowerCase() + str.slice(1)
 }

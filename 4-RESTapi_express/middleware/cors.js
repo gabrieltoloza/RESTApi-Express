@@ -6,7 +6,8 @@ const ACCEPTED_ORIGINS = [
     'http://localhost:8080',
     'http://localhost:3000',
     'http://127.0.0.1:5500',
-    'file:///C:/Users/Usuario/Workspace/Node/Api%20con%20Node%20y%20Express/4-RESTapi_express/index.html'
+    'file:///C:/Users/Usuario/Workspace/Node/Api%20con%20Node%20y%20Express/4-RESTapi_express/index.html',
+    'http://127.0.0.1:5501'
 ]
 
 

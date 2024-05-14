@@ -8,4 +8,4 @@ orderRouter.get('/', OrdersController.getAll)
 orderRouter.post('/', OrdersController.createOrder)
 
 orderRouter.get('/:id', OrdersController.getById)
-// orderRouter.get('/:id', OrdersController.)
+orderRouter.patch('/:orderId/users/:userId', OrdersController.updateOrder)

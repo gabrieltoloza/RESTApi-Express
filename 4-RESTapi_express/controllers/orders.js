@@ -1,4 +1,4 @@
-import { validateId, validateUpdateOrder } from '../schema_validation.js'
+import { validateOder, partialValidateUpdateOrder } from '../schema_validation.js'
 import { OrderModel } from '../models/mysql/orders.js'
 
 
@@ -18,22 +18,24 @@ export class OrdersController {
     }
 
     static async createOrder (req, res) {
-        const result = validateId(req.body)
+        const result = validateOder(req.body)
         if (result.error) {
             return res.status(400).json({error: JSON.parse(result.error.message)})
         }
         const newOrder = await OrderModel.createOrder({input: result.data})
         if (!newOrder) return res.json({message: "Error de controlador al intentar crear la factura"})
     
-        return res.status(200).json(newOrder)
+        return res.status(200).json({ message: "Solicitud exitosa" })
     }
 
     static async updateOrder (req, res) {
-        const result = validateUpdateOrder(req.body)
+        const result = partialValidateUpdateOrder(req.body)
         if (result.error) return res.status(400).json({error: JSON.parse(result.error.message)})
-        const updateOrder = await OrderModel.updateOrder({input: result.data})
-        if (!updateOrder) return res.json({message: "Error de controlar al intentar actualizar la factura "})
+        const { orderId, userId } = req.params
+        const updateOrder = await OrderModel.updateOrder({ orderId, userId ,input: result.data})
+        if (!updateOrder) return res.json({message: "Error de controlador al intentar actualizar la factura "})
+        return res.status(200).json(updateOrder)
     }
 
-    
+
 }
